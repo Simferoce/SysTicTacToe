@@ -12,39 +12,21 @@ namespace TicTacToe
 {
     class Joueur
     {
-        private int numJoueur = 0;
-        public int NumJoueur { get { return numJoueur; } }
-        public bool utiliseConsole = false;
-        private List<string> infoToSave = new List<string>();
-        private Thread save;
-        public Joueur(int numJoueur)
+        private char id;
+        public char Id { get { return id; } }
+        public string inputs = "";
+        public bool controleWindow = false;
+        public Joueur(char id)
         {
-            this.numJoueur = numJoueur;
-            save = new Thread(new ThreadStart(Save));
-        }
-        private void AddInfo(string info)
-        {
-            infoToSave.Add(info);
+            this.id = id;
         }
         public void Run()
         {
-            save.Start();
             while (true)
             {
-                if (utiliseConsole)
+                if (controleWindow && inputs == "")
                 {
-                    Console.ReadLine();
-                    utiliseConsole = false;
-                }
-            }
-        }
-        private void Save()
-        {
-            while (true)
-            {
-                if (infoToSave.Count != 0)
-                {
-                    //Save
+                    inputs = Console.ReadLine();
                 }
             }
         }
